@@ -23,6 +23,10 @@ class MenuController extends Controller
         		$data['menu'][$items->parent_id]['child'][$items->id] = &$item;
 			}
 		}
+
+    	$data['mainTitle'] = 'Menu';
+    	$data['firstPage'] = 'Admin';
+    	$data['secondPage'] = 'Menu';
 		$data['menus'] = Menu::where('parent_id', 0)->get();
 
 		return view('admin.menu.index', $data);
