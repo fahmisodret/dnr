@@ -14,7 +14,7 @@
         <form name="form-soal" method="POST" class="form-horizontal" id="formSoal" action="{{ url('/admin/menu/store') }}">
             {{ csrf_field() }}
             <div class="form-group col-md-6">
-                <label for="paket" class="col-sm-4 control-label">Parent</label>
+                <label for="paket" class="col-sm-4 control-label">Menu</label>
                 <div class="col-sm-8">
                     <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="NamaMenu">
                 </div>
@@ -66,6 +66,14 @@
             </tbody>
         </table> --}}
         @if(isset($menu) && count($menu) > 0)
+            <div class="form-group col-md-6" style="display: none;">
+                <label for="paket" class="col-sm-4 control-label">Menu</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="menu_id" id="menu_id">
+                    <input type="text" class="form-control" name="menu_name" id="menu_name">
+                    <button class="btn btn-sm btn-success">Edit</button>
+                </div>
+            </div>
             <div class="tree ">
                 <ul>
                     @foreach($menu as $mainkey => $item)
@@ -112,7 +120,6 @@
                     </li>
                     @endforeach
                 </ul>
-                <input type="text" name="menu_name">
             </div>
         @endif
     </div>
