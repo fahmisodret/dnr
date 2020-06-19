@@ -6,8 +6,8 @@
     <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>150</h3>
-                <p>Pasien Terdaftar</p>
+                <h3>{{App\User::all()->count()}}</h3>
+                <p>Total Superuser</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -20,8 +20,8 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>150</h3>
-                <p>Pasien</p>
+                <h3>{{App\Menu::all()->count()}}</h3>
+                <p>Total Menu</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
