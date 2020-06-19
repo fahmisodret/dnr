@@ -14,11 +14,14 @@
         <form name="form-soal" method="POST" class="form-horizontal" id="formSoal" action="{{ url('/admin/menu/store') }}">
             {{ csrf_field() }}
             <div class="form-group col-md-6">
-                <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="Name">
+                <label for="paket" class="col-sm-4 control-label">Parent</label>
+                <div class="col-sm-8">
+                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="Name">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="paket" class="col-sm-2 control-label">Parent</label>
-                <div class="col-sm-4">
+            <div class="form-group col-md-6">
+                <label for="paket" class="col-sm-4 control-label">Parent</label>
+                <div class="col-sm-8">
                     <select name="parent_id" class="form-control">
                         <option value="0" selected>No Parent</option>
                         @foreach($menus as $mm)
