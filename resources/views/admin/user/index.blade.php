@@ -37,9 +37,10 @@
                     <td>{{$item->email}}</td>
                     <td>{{($item->role == 1)?'Admin':'Superuser'}}</td>
                     <td><div style="text-align:center">
-                        <a href="{{url("admin/user/destroy/".$item->id)}}" class="btn btn-danger btn-xs">Hapus</a> 
-                        <a href="{{url("admin/user/edit/".$item->id)}}" class="btn btn-warning btn-xs">Ubah</a> 
-                        <a href="{{url("admin/user/show/".$item->id)}}" class="btn btn-success btn-xs">Detail</a>
+                        {{-- <a href="{{url("admin/user/destroy/".$item->id)}}" class="btn btn-danger btn-xs">Hapus</a>  --}}
+                        {{-- <a href="{{url("admin/user/edit/".$item->id)}}" class="btn btn-warning btn-xs">Ubah</a>  --}}
+                        {{-- <a href="{{url("admin/user/show/".$item->id)}}" class="btn btn-success btn-xs">Detail</a> --}}
+                        <a href="{{url("admin/user/verif/".$item->id)}}" class="btn btn-warning btn-xs">{{($item->status == 0)?'Verify':'disable'}}</a> 
                     </div></td>
                 </tr>
                 @endforeach

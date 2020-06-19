@@ -25,7 +25,8 @@ class Admin
         }
 
         if (Auth::user()->role == 2) {
-            return redirect()->route('operator');
+            return $next($request);
+            // return redirect()->route('operator');
         }
     }
 }

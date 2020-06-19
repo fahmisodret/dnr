@@ -14,8 +14,20 @@
         <form name="form-soal" method="POST" class="form-horizontal" id="formSoal" action="{{ url('/admin/menu/store') }}">
             {{ csrf_field() }}
             <div class="form-group col-md-6">
-                <input id="name" type="text" class="form-control" name="name" value="" required autocomplete="name" autofocus placeholder="Name">
+                <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="Name">
             </div>
+            <div class="form-group">
+                <label for="paket" class="col-sm-2 control-label">Parent</label>
+                <div class="col-sm-4">
+                    <select name="parent_id" class="form-control">
+                        <option value="0" selected>No Parent</option>
+                        @foreach($menus as $mm)
+                            <option value="{{$mm->id}}">{{$mm->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="col-md-6">
                 <Button type="submit" class="btn btn-success btn-sm">Tambah</Button> 
             </div>
@@ -50,7 +62,7 @@
                 @endforeach
             </tbody>
         </table> --}}
-        @if(count($menu) > 0)
+        @if(isset($menu) && count($menu) > 0)
             <div class="tree ">
                 <ul>
                     @foreach($menu as $mainkey => $item)
@@ -65,16 +77,28 @@
                                 {{$item['name']}}
                             </a>
                             <a class="btn btn-info btn-xs">edit</a>
+                            <a href="{{url("admin/menu/destroy/".$mainkey)}}" class="btn btn-danger btn-xs">
+                                Hapus
+                            </a> 
+                            <a href="{{url('generate/'.$item['plural'].'/index')}}" class="btn btn-primary btn-xs">
+                                Go
+                            </a> 
                         </span>
                         @if(isset($item['child']))
                         <div id="{{$item['name']}}" class="collapse show">
                             <ul>
                                 @foreach($item['child'] as $key => $sub)
                                 <li>
-                                    <span class="col-md-5">
+                                    <span class="col-md-4">
                                         <input type="checkbox" value="{{$key}}" class="inp"/>
                                         <a href="#!"> {{$sub['name']}}</a>
                                         <a class="btn btn-info btn-xs">edit</a>
+                                        <a href="{{url("admin/menu/destroy/".$key)}}" class="btn btn-danger btn-xs">
+                                            Hapus
+                                        </a> 
+                                        <a href="{{url('generate/'.$item['plural'].'/index')}}" class="btn btn-primary btn-xs">
+                                            Go
+                                        </a> 
 
                                     </span>
                                 </li>
@@ -87,66 +111,6 @@
                 </ul>
             </div>
         @endif
-<div class="tree ">
-    <ul>
-        <li>
-            <span class="col-md-6">
-                <i class="expanded">
-                    <input type="checkbox" class="inp" data-check="Web"/>
-                </i> 
-                <a style="color:#000; text-decoration:none;" data-toggle="collapse" href="#Web" aria-expanded="true" aria-controls="Web">
-                    <i class="collapsed"><i class="fas fa-folder"></i></i>
-                    <i class="expanded"><i class="far fa-folder-open"></i></i>
-                    Web
-                </a>
-            </span>
-            <div id="Web" class="collapse show">
-                <ul>
-                    <li>
-                        <span>
-                            <input type="checkbox" class="inp"/>
-                            <a href="#!"> Link 1</a>
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <input type="checkbox" class="inp"/>
-                            <a href="#!"> Link 1</a>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <span class="col-md-6">
-                <i class="expanded">
-                    <input type="checkbox" class="inp" data-check="Wob"/>
-                </i> 
-                <a style="color:#000; text-decoration:none;" class="exp" data-toggle="collapse" href="#Wob" aria-expanded="true" aria-controls="Wob">
-                    <i class="collapsed"><i class="fas fa-folder"></i></i>
-                    <i class="expanded"><i class="far fa-folder-open"></i></i>
-                    Wob
-                </a>
-            </span>
-            <div id="Wob" class="collapse show">
-                <ul>
-                    <li>
-                        <span>
-                            <input type="checkbox" class="inp"/>
-                            <a href="#!"> Link 1</a>
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <input type="checkbox" class="inp"/>
-                            <a href="#!"> Link 1</a>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-</div>
     </div>
 </div>
 @endsection

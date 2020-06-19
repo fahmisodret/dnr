@@ -9,7 +9,7 @@
     </div>
     <div class="box-body">
         <hr style="margin: 10px 0 15px 0">
-        <form name="form-soal" method="POST" class="form-horizontal" id="formSoal" action="{{ url('/admin/kelurahan/store') }}">
+        <form name="form-soal" method="POST" class="form-horizontal" id="formSoal" action="{{ url('/admin/user/store') }}">
             {{ csrf_field() }}
             <input type="hidden" name="id" value="N">
             <div class="box-body">
@@ -47,16 +47,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="col-md-4 control-label">{{ __('Password') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                    </div>
-                </div>
-                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div id="wrap-btn">
-                            <a href="{{ url('/admin/kelurahan')}}" class="btn btn-danger">Kembali</a>
+                            <a href="{{ url('/admin/user')}}" class="btn btn-danger">Kembali</a>
                             <button type="submit" class="btn btn-info" id="btnSimpan">Simpan</button>
                         </div>
                     </div>

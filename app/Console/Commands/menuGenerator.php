@@ -41,7 +41,7 @@ class menuGenerator extends Command
             [$name, strtolower(Str::plural($name))],
             $this->getStub('View')
         );
-        file_put_contents(resource_path('views/menu_view/'.$name.'.blade.php'), $viewTemplate);
+        file_put_contents(resource_path('views/menu_view/'.strtolower(Str::plural($name)).'.blade.php'), $viewTemplate);
     }
 
     /**

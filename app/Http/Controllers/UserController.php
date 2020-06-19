@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UserController extends Controller
 {
     /**
-     * Menampilkan data kelurahan.
+     * Menampilkan data user.
      * Role = Admin
      *
-     * @return data kelurahan
+     * @return data user
      */
     public function index()
     {
@@ -23,10 +24,10 @@ class UserController extends Controller
     }
 
     /**
-     * Menampilkan data kelurahan.
+     * Menampilkan data user.
      * Role = Admin
      *
-     * @return data kelurahan
+     * @return data user
      */
     public function create()
     {
@@ -38,23 +39,31 @@ class UserController extends Controller
 
 
     /**
-     * insert data kelurahan.
+     * insert data user.
      * Role = Admin
      *
-     * @return data kelurahan
+     * @return data user
      */
     public function store(Request $request)
     {
         $status = 200;
         $message = 'User added!';
         $this->validate($request, [
-			'User' => 'required',
-			'kecamatan' => 'required',
-			'kota' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' => ['required'],
 		]);
         $requestData = $request->all();
+        $res = User::create([
+            'name' => $requestData['name'],
+            'phone' => $requestData['phone'],
+            'email' => $requestData['email'],
+            'role' => $requestData['role'],
+            'password' => Hash::make('123456'),
+        ]);
+
         
-        $res = User::create($requestData);
         if(!$res){
             $status = 500;
             $message = 'User Not added!';
@@ -68,79 +77,37 @@ class UserController extends Controller
 
 
     /**
-     * Menampilkan detail data kelurahan.
+     * update data user.
      * Role = Admin
      *
      * @param $id
-     * @return data kelurahan
+     * @return data user
      */
-    public function show($id)
-    {
-    	$data['mainTitle'] = 'User';
-    	$data['firstPage'] = 'Admin';
-    	$data['secondPage'] = 'User';
-        $data['item'] = User::findOrFail($id);
-
-        return view('admin.user.show', $data);
-    }
-
-
-    /**
-     * edit data kelurahan.
-     * Role = Admin
-     *
-     * @param $id
-     * @return data kelurahan
-     */
-    public function edit($id)
-    {
-    	$data['mainTitle'] = 'User';
-    	$data['firstPage'] = 'Admin';
-    	$data['secondPage'] = 'User';
-        $data['item'] = User::findOrFail($id);
-
-        return view('admin.user.edit', $data);
-    }
-
-
-    /**
-     * update data kelurahan.
-     * Role = Admin
-     *
-     * @param $id
-     * @return data kelurahan
-     */
-    public function update(Request $request, $id)
+    public function verif($id)
     {
         $status = 200;
-        $message = 'User Updated!';
-        $this->validate($request, [
-			'User' => 'required',
-			'kecamatan' => 'required',
-			'kota' => 'required'
-		]);
-        $requestData = $request->all();
-        $kelurahan = User::findOrFail($id);
-        $res = $kelurahan->update($requestData);
+        $message = 'User updated!';
+        $user = User::find($id);
+        $res = $user->update(['status'=>!$user->status]);
         if(!$res){
             $status = 500;
             $message = 'User Not updated!';
         }
 
-        if($request->ajax()){
-            return response()->json(['flash_status'=>$status, 'flash_message'=>$message]);
-        }
+        // if($request->ajax()){
+        //     return response()->json(['flash_status'=>$status, 'flash_message'=>$message]);
+        // }
         return redirect('admin/user')
             ->with(['flash_status' => $status,'flash_message' => $message]);
     }
 
 
     /**
-     * delete data kelurahan.
+     * delete data user.
      * Role = Admin
      *
      * @param $id
-     * @return data kelurahan
+     * @return data user
      */
     public function destroy($id)
     {
