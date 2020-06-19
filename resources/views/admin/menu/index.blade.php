@@ -112,6 +112,7 @@
                     </li>
                     @endforeach
                 </ul>
+                <input type="text" name="menu_name">
             </div>
         @endif
     </div>
@@ -120,30 +121,12 @@
 @section('js')
 <script type="text/javascript">
     $('.inp').click(function(){
-        // var e = $(this);
-        // console.warn($(this).find('.inp'));
-        // ($(this).is(':checked'))
-        // ?$(this).prop("checked", false)
-        // :$(this).prop("checked", true);
         var target = $(this).data('check');
         $('#'+target).find('.inp').each(function (index, el) {
             ($(el).is(':checked'))
             ?$(el).prop("checked", false)
             :$(el).prop("checked", true);
         });
-        // var target = $(this).data('check');
-
-        // this.checked = value
-        // this.setAttribute("check-value", value)
-        // if (value == 0) {
-        //     $(this).find(">[check-icon]")[0].className = "fa fa-circle-thin";
-        // }
-        // if (value == 1) {
-        //     $(this).find(">[check-icon]")[0].className = "fa fa-check-circle-o";
-        // }
-        // if (value == 2) {
-        //     $(this).find(">[check-icon]")[0].className = "fa fa-dot-circle-o";
-        // }
     })
 </script>
 @endsection
