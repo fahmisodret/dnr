@@ -16,7 +16,7 @@
             <div class="form-group col-md-6">
                 <label for="paket" class="col-sm-4 control-label">Parent</label>
                 <div class="col-sm-8">
-                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="Name">
+                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus placeholder="NamaMenu">
                 </div>
             </div>
             <div class="form-group col-md-6">
