@@ -51,7 +51,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">PT. Intan Jaya Makmur</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">DNR</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
